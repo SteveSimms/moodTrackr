@@ -7,10 +7,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatSelectModule} from "@angular/material/select";
 import {ReactiveFormsModule} from "@angular/forms";
+import { SelectMoodComponent } from './select-mood/select-mood.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    SelectMoodComponent
   ],
   imports: [
     BrowserModule,
