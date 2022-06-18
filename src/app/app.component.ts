@@ -47,20 +47,20 @@ import {FormControl, Validators} from '@angular/forms';
       <div class="max-w-2xl px-8 py-4 mx-auto bg-white rounded-lg shadow-md dark:bg-gray-800 mt-20"
            *ngFor="let c of currentMood">
         <div class="flex items-center justify-between">
-          <span class="text-sm font-light text-gray-600 dark:text-gray-400">Mar 10, 2019</span>
+          <span class="text-sm font-light text-gray-600 dark:text-gray-400">{{c?.dateTime}}</span>
           <a class="px-3 py-1 text-sm font-bold text-gray-100 transition-colors duration-200 transform bg-gray-600 rounded cursor-pointer hover:bg-gray-500">Mood</a>
         </div>
         <div class="container">
           <div class="mt-20">
             <a href="#" class="text-2xl font-bold text-gray-700 dark:text-white hover:text-gray-600 dark:hover:text-gray-200 hover:underline">   {{c.state}}</a>
-            <p class="mt-2 text-gray-600 dark:text-gray-300">{{c.mood}}</p>
+            <p class="mt-2 text-gray-600 dark:text-gray-300">{{c?.mood}}</p>
           </div>
           <div class="flex items-center justify-between mt-4">
             <a href="#" class="text-blue-600 dark:text-blue-400 hover:underline">Read more</a>
 
             <div class="flex items-center">
               <img class="hidden object-cover w-10 h-10 mx-4 rounded-full sm:block" src="https://images.unsplash.com/photo-1502980426475-b83966705988?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=40&q=80" alt="avatar">
-              <a class="font-bold text-gray-700 cursor-pointer dark:text-gray-200">Khatab wedaa</a>
+              <a class="font-bold text-gray-700 cursor-pointer dark:text-gray-200">Steve Simms</a>
             </div>
           </div>
         </div>
@@ -83,13 +83,20 @@ import {FormControl, Validators} from '@angular/forms';
 export class AppComponent {
   title = 'moodTrackr';
   dateAndTime = new Date();
+  formatDate(){
+   return  this.dateAndTime.toLocaleString('en-US',{
+      weekday: 'short',
+      month: 'long',
+      day: '2-digit',
+      year: 'numeric'
+    });
+  }
   emotionsControl = new FormControl('', [Validators.required]);
   emotions = [
-    {mood: 'Normal', state: 'Euthymic',emoji: '😃',dateTime: this.dateAndTime},
-    {mood: 'Feeling great, as if one just won the lottery.', state: 'Euphoric',emoji: '😃',dateTime: this.dateAndTime},
-    {mood: 'Sad', state: 'Depressed',emoji: '😔',dateTime: this.dateAndTime},
-    {mood: 'Manic', state: 'Euphoric',emoji: '🤪',dateTime:this.dateAndTime},
-    {mood: 'Hypo-Manic', state: 'Agitated', emoji: '🤑',dateTime:this.dateAndTime},
+    {mood: 'Normal', state: 'Euthymic',emoji: '😃',dateTime: this.formatDate()},
+    {mood: 'Feeling great, as if one just won the lottery.', state: 'Euphoric',emoji: '😃',dateTime:  this.formatDate()},
+    {mood: 'Sad, loss of intrest in things that normally hold your interest. A sense of listlessness', state: 'Depressed',emoji: '😔',dateTime:  this.formatDate()},
+    {mood: 'Euphoric... Euphoria racing thoughts flight of ideas are all common symptoms of mania.', state: 'Manic',emoji: '🤪',dateTime: this.formatDate()},
   ];
 
   currentMood: any  = [];
