@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 
 import {FormControl, Validators} from '@angular/forms';
+
 @Component({
   selector: 'app-root',
   template: `
@@ -11,10 +12,10 @@ import {FormControl, Validators} from '@angular/forms';
     >
       <span class="text-xs font-extralight">Light </span>
       <div>
-        <input type="checkbox" name="" id="checkbox" class="hidden" />
-        <label for="checkbox" class="cursor-pointer">
-          <div class="w-9 h-5 flex items-center bg-gray-300 rounded-full p2">
-            <div class="w-4 h-4 bg-white rounded-full shadow"></div>
+        <input type="checkbox" name="" id="checkbox " class="hidden" />
+        <label for="checkbox" class="cursor-pointer ">
+          <div class="w-9 h-5 flex items-center bg-gray-300 rounded-full p2 switch-ball" (click)="toggleDarkTheme()">
+            <div class="w-4 h-4 bg-white rounded-full shadow  "></div>
           </div>
         </label>
       </div>
@@ -44,6 +45,15 @@ import {FormControl, Validators} from '@angular/forms';
 })
 export class AppComponent {
   title = 'moodTrackr';
+   checkbox = document.querySelector("#checkbox");
+   html = document.querySelector("html");
 
+
+  toggleDarkTheme() : void {
+    document.body.classList.toggle('dark-mode');
+    // this.checkbox
+    //   ? this.html?.classList.add("dark")
+    //   : this.html?.classList.remove("dark");
+  }
 }
 
