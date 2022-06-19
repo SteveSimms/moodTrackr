@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {FormControl, Validators} from "@angular/forms";
 
 @Component({
@@ -45,7 +45,7 @@ import {FormControl, Validators} from "@angular/forms";
 
 
       <!--CurrentMoodCardComponent-->
-      <div class="max-w-2xl px-8 py-4 mx-auto bg-white rounded-lg shadow-md dark:bg-gray-800 mt-20"
+      <div [ngClass]="{'dark:bg-gray-800 ':isDarkMode, 'bg-white ': !isDarkMode}" class="max-w-2xl px-8 py-4 mx-auto bg-white rounded-lg shadow-md dark:bg-gray-800 mt-20"
            *ngFor="let c of currentMood">
         <div class="flex items-center justify-between">
           <span class="text-sm font-light text-gray-600 dark:text-gray-400">{{c?.dateTime}}</span>
@@ -86,7 +86,7 @@ export class SelectMoodComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
+@Input()  isDarkMode: boolean = false;
   dateAndTime = new Date();
   formatDate(){
     return  this.dateAndTime.toLocaleString('en-US',{
@@ -111,4 +111,5 @@ export class SelectMoodComponent implements OnInit {
     console.log(this.currentMood)
   }
 
+  // isDarkMode = false;
 }

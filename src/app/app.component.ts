@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, Output} from '@angular/core';
 
 import {FormControl, Validators} from '@angular/forms';
 
@@ -26,7 +26,7 @@ import {FormControl, Validators} from '@angular/forms';
 
     </div>
 
-<app-select-mood></app-select-mood>
+<app-select-mood [isDarkMode]="isDarkMode"></app-select-mood>
 
 
 
@@ -48,12 +48,12 @@ export class AppComponent {
    checkbox = document.querySelector("#checkbox");
    html = document.querySelector("html");
 
+  @Output() isDarkMode: boolean = false;
 
   toggleDarkTheme() : void {
     document.body.classList.toggle('dark-mode');
-    // this.checkbox
-    //   ? this.html?.classList.add("dark")
-    //   : this.html?.classList.remove("dark");
+    this.isDarkMode = true;
   }
+
 }
 
